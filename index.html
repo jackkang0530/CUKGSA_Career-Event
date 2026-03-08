@@ -557,16 +557,27 @@
     }
 
     @media (max-width: 767px) {
-      .container { width: min(1120px, calc(100% - 2rem)); }
+      .container { width: min(1120px, calc(100% - 3rem)); }
       .section { padding: 4.5rem 0; }
       .card { padding: 1rem; }
       .nav-wrap { grid-template-columns: 1fr auto auto; }
       .menu-toggle { display: inline-flex; }
-      .nav-cta .button-primary { display: none; }
+      .nav-cta .button-primary { display: inline-flex; padding: 0.48rem 0.8rem; font-size: 0.86rem; }
+      .site-header { background: rgba(250, 250, 250, 0.95); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(10, 10, 10, 0.08); }
+      .nav-wrap { min-height: 68px; gap: 0.45rem; }
+      .menu-toggle { padding: 0.4rem 0.52rem; }
+
+      .hero-grid { gap: 1.2rem; }
+      .hero-meta { font-size: 0.9rem; }
+      .hero-description { font-size: 1rem; }
+      .poster-frame { margin: 0 auto; width: min(100%, 430px); transform: rotate(0deg); }
+      .shape-square { display: none; }
+      .shape-circle { right: 7%; top: 150px !important; }
+      .shape-star { right: 5%; bottom: 32px !important; }
 
       .nav-links {
         position: absolute;
-        top: 74px;
+        top: 68px;
         left: 0;
         right: 0;
         background: rgba(250, 250, 250, 0.98);
@@ -610,7 +621,7 @@
     }
 
     @media (max-width: 420px) {
-      .container { width: min(1120px, calc(100% - 1.4rem)); }
+      .container { width: min(1120px, calc(100% - 2rem)); }
       .speaker-grid { grid-template-columns: 1fr; }
       .gallery-grid { gap: 0.42rem; }
       .ticket-grid { gap: 0.55rem; }
@@ -869,15 +880,15 @@
         <h2 class="section-title" data-animate>Sponsored by</h2>
         <div class="sponsor-grid">
           <article class="sponsor-card" data-animate>
-            <img src="images/sponsors/1.jpg" alt="LG Electronics 로고" loading="lazy" />
+            <img src="images/1.png" alt="LG Electronics 로고" loading="lazy" onerror="this.onerror=null;this.src='images/sponsors/1.jpg';" />
             <strong>LG Electronics</strong>
           </article>
           <article class="sponsor-card" data-animate>
-            <img src="images/sponsors/2.jpg" alt="Doosan 로고" loading="lazy" />
+            <img src="images/2.png" alt="Doosan 로고" loading="lazy" onerror="this.onerror=null;this.src='images/sponsors/2.jpg';" />
             <strong>Doosan</strong>
           </article>
           <article class="sponsor-card" data-animate>
-            <img src="images/sponsors/3.jpg" alt="TADA 로고" loading="lazy" />
+            <img src="images/3.png" alt="TADA 로고" loading="lazy" onerror="this.onerror=null;this.src='images/sponsors/3.jpg';" />
             <strong>TADA</strong>
           </article>
         </div>

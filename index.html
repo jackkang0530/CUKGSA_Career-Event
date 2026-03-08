@@ -544,6 +544,12 @@
       transform: translateY(0);
     }
 
+    #program .section-title { color: var(--primary-blue); }
+    #register .section-title { color: var(--accent-red); }
+    #kgsa .section-title { color: var(--accent-green); }
+    #sponsors .section-title { color: var(--accent-pink); }
+    #venue .section-title { color: var(--primary-blue); }
+
     @media (max-width: 1100px) {
       .speaker-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .hero-grid { grid-template-columns: 1fr; }
@@ -551,7 +557,7 @@
     }
 
     @media (max-width: 767px) {
-      .container { width: min(1120px, calc(100% - 1.2rem)); }
+      .container { width: min(1120px, calc(100% - 2rem)); }
       .section { padding: 4.5rem 0; }
       .nav-wrap { grid-template-columns: 1fr auto auto; }
       .menu-toggle { display: inline-flex; }
@@ -581,12 +587,23 @@
       .nav-links.open { max-height: 360px; }
 
       .about-cards,
-      .speaker-grid,
-      .ticket-grid,
       .register-wrap,
-      .gallery-grid,
-      .sponsor-grid,
       .venue-box { grid-template-columns: 1fr; }
+
+      .speaker-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .speaker-card { padding: 1rem; padding-top: 1.4rem; }
+      .speaker-name { font-size: 0.96rem; }
+
+      .ticket-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+      .ticket-price { font-size: 1.6rem; }
+
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+      .gallery-item { min-height: 110px; }
+
+      .sponsor-grid { grid-template-columns: 1fr; }
+
+      .section-title { font-size: clamp(1.55rem, 7vw, 2rem); }
+      .section-sub, .timeline-desc, .speaker-role, .speaker-org { color: #444; }
 
       .hero { padding-top: 8.2rem; }
     }

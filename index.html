@@ -1,618 +1,983 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CU KGSA Career Event 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --navy: #0a1628; --navy-mid: #0f1f3a; --navy-light: #162a4a; --navy-surface: #1a3055;
-    --gold: #c9a84c; --gold-light: #e0c36e; --gold-muted: rgba(201,168,76,0.12); --gold-glow: rgba(201,168,76,0.25);
-    --white: #ffffff; --text-primary: #e8e0d4; --text-secondary: #9aa8c0; --text-muted: #5e7090;
-    --border-gold: rgba(201,168,76,0.2); --border-light: rgba(255,255,255,0.06);
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text-primary); line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 CU KGSA Career Event</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <style>
+    :root {
+      --bg: #FAFAFA;
+      --bg-grid: #E8E8E8;
+      --primary-blue: #0047FF;
+      --accent-green: #00C853;
+      --accent-yellow: #FFD600;
+      --accent-red: #FF3D00;
+      --accent-pink: #FF0080;
+      --text-primary: #111111;
+      --text-secondary: #555555;
+      --dark-section: #0A0A0A;
+      --card-bg: #FFFFFF;
+      --line: #D9D9D9;
+      --radius: 18px;
+    }
 
-  /* NAV */
-  nav { position: fixed; top:0; left:0; right:0; z-index:1000; padding:0 48px; height:72px; display:flex; align-items:center; justify-content:space-between; background:rgba(10,22,40,0.85); backdrop-filter:blur(24px); border-bottom:1px solid var(--border-light); transition:all 0.4s; }
-  nav.scrolled { background:rgba(10,22,40,0.95); box-shadow:0 4px 30px rgba(0,0,0,0.3); }
-  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:var(--gold); letter-spacing:2px; text-transform:uppercase; }
-  .nav-center { display:flex; gap:36px; list-style:none; }
-  .nav-center a { color:var(--text-secondary); text-decoration:none; font-size:0.82rem; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; transition:color 0.3s; position:relative; }
-  .nav-center a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--gold); transition:width 0.3s; }
-  .nav-center a:hover { color:var(--gold); }
-  .nav-center a:hover::after { width:100%; }
-  .nav-right { display:flex; align-items:center; gap:16px; }
-  .lang-toggle { display:inline-flex; border:1px solid var(--border-gold); border-radius:100px; overflow:hidden; }
-  .lang-toggle a { padding:7px 16px; font-size:0.72rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:all 0.3s; color:var(--text-muted); }
-  .lang-toggle a.active { background:var(--gold); color:var(--navy); }
-  .lang-toggle a:not(.active):hover { color:var(--gold); background:var(--gold-muted); }
-  .nav-mobile-toggle { display:none; background:none; border:none; cursor:pointer; padding:8px; }
-  .nav-mobile-toggle span { display:block; width:24px; height:2px; background:var(--gold); margin:5px 0; transition:0.3s; }
+    * { box-sizing: border-box; }
 
-  /* HERO */
-  .hero { position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 48px 80px; overflow:hidden; }
-  .hero-bg { position:absolute; inset:0; background: radial-gradient(ellipse 70% 50% at 50% 40%,rgba(201,168,76,0.06) 0%,transparent 70%), radial-gradient(ellipse 60% 60% at 20% 80%,rgba(22,42,74,0.8) 0%,transparent 60%), radial-gradient(ellipse 60% 60% at 80% 20%,rgba(26,48,85,0.6) 0%,transparent 60%), linear-gradient(180deg,var(--navy),var(--navy-mid)); }
-  .hero-lines { position:absolute; inset:0; overflow:hidden; opacity:0.12; }
-  .hero-lines::before,.hero-lines::after { content:''; position:absolute; background:linear-gradient(180deg,transparent,var(--gold),transparent); width:1px; height:100%; animation:lineFloat 8s ease-in-out infinite; }
-  .hero-lines::before { left:20%; } .hero-lines::after { right:25%; animation-delay:4s; }
-  @keyframes lineFloat { 0%,100%{opacity:0;transform:translateY(-20%)} 50%{opacity:1;transform:translateY(20%)} }
-  .hero-content { position:relative; z-index:2; max-width:900px; }
-  .hero-badge { display:inline-flex; align-items:center; gap:10px; padding:10px 24px; border:1px solid var(--border-gold); border-radius:100px; font-size:0.78rem; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:40px; background:var(--gold-muted); animation:fadeInDown 1s ease 0.2s both; }
-  .hero-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 2s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,7vw,5.5rem); font-weight:300; line-height:1.1; color:var(--white); margin-bottom:12px; animation:fadeInUp 1s ease 0.4s both; }
-  .hero h1 .accent { color:var(--gold); font-style:italic; font-weight:400; }
-  .hero-date { font-family:'Cormorant Garamond',serif; font-size:clamp(1.2rem,2.5vw,1.6rem); font-weight:400; color:var(--gold-light); letter-spacing:2px; margin-bottom:32px; animation:fadeInUp 1s ease 0.6s both; }
-  .hero-desc { font-size:1.05rem; color:var(--text-secondary); max-width:600px; margin:0 auto 20px; font-weight:300; line-height:1.8; animation:fadeInUp 1s ease 0.8s both; }
-  .hero-venue { font-size:0.88rem; color:var(--text-muted); margin-bottom:40px; font-weight:400; animation:fadeInUp 1s ease 0.9s both; }
-  .hero-venue strong { color:var(--text-secondary); }
-  .hero-cta-group { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; animation:fadeInUp 1s ease 1s both; }
-  .btn { display:inline-flex; align-items:center; gap:10px; padding:16px 36px; font-family:'DM Sans',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; border:none; cursor:pointer; transition:all 0.4s; border-radius:4px; }
-  .btn-primary { background:linear-gradient(135deg,var(--gold),#b8923e); color:var(--navy); box-shadow:0 4px 20px rgba(201,168,76,0.25); }
-  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(201,168,76,0.35); }
-  .btn-outline { background:transparent; color:var(--gold); border:1px solid var(--border-gold); }
-  .btn-outline:hover { background:var(--gold-muted); border-color:var(--gold); transform:translateY(-2px); }
-  .hero-scroll { position:absolute; bottom:40px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--text-muted); font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; animation:fadeIn 1s ease 1.5s both; }
-  .scroll-line { width:1px; height:40px; background:linear-gradient(180deg,var(--gold),transparent); animation:scrollPulse 2s ease-in-out infinite; }
-  @keyframes scrollPulse { 0%,100%{opacity:0.3;height:40px} 50%{opacity:1;height:55px} }
+    html { scroll-behavior: smooth; }
 
-  /* SECTIONS */
-  section { padding:120px 48px; position:relative; }
-  .section-divider { width:60px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 20px; }
-  .section-label { font-size:0.72rem; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--gold); text-align:center; margin-bottom:16px; }
-  .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:400; color:var(--white); text-align:center; margin-bottom:20px; line-height:1.2; }
-  .section-subtitle { font-size:1rem; color:var(--text-secondary); text-align:center; max-width:640px; margin:0 auto 64px; font-weight:300; line-height:1.8; }
+    body {
+      margin: 0;
+      color: var(--text-primary);
+      font-family: "Pretendard", "Noto Sans KR", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      background:
+        linear-gradient(var(--bg-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px),
+        var(--bg);
+      background-size: 32px 32px, 32px 32px, auto;
+      overflow-x: hidden;
+    }
 
-  /* ABOUT */
-  .about { background:radial-gradient(ellipse 50% 50% at 80% 20%,rgba(201,168,76,0.04) 0%,transparent 70%),var(--navy-mid); }
-  .about-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; max-width:1100px; margin:0 auto; }
-  .about-card { padding:40px 32px; background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:8px; transition:all 0.4s; position:relative; overflow:hidden; }
-  .about-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0; transition:opacity 0.4s; }
-  .about-card:hover { background:rgba(255,255,255,0.04); border-color:var(--border-gold); transform:translateY(-4px); }
-  .about-card:hover::before { opacity:1; }
-  .about-icon { width:48px; height:48px; border-radius:12px; background:var(--gold-muted); display:flex; align-items:center; justify-content:center; margin-bottom:24px; font-size:1.3rem; }
-  .about-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--white); margin-bottom:12px; }
-  .about-card p { font-size:0.92rem; color:var(--text-secondary); line-height:1.7; font-weight:300; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; }
 
-  /* PROGRAM */
-  .program { background:var(--navy); }
-  .timeline { max-width:800px; margin:0 auto; position:relative; }
-  .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:linear-gradient(180deg,transparent,var(--gold),var(--gold),transparent); }
-  .timeline-item { padding-left:48px; margin-bottom:56px; position:relative; opacity:0; transform:translateX(20px); transition:all 0.6s; }
-  .timeline-item.visible { opacity:1; transform:translateX(0); }
-  .timeline-item::before { content:''; position:absolute; left:-5px; top:8px; width:11px; height:11px; border-radius:50%; background:var(--navy); border:2px solid var(--gold); z-index:1; }
-  .timeline-time { font-size:0.78rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
-  .timeline-title { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500; color:var(--white); margin-bottom:10px; }
-  .timeline-desc { font-size:0.92rem; color:var(--text-secondary); font-weight:300; line-height:1.7; }
-  .timeline-tags { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
-  .timeline-tag { padding:4px 14px; font-size:0.72rem; font-weight:500; letter-spacing:1px; text-transform:uppercase; border-radius:100px; border:1px solid var(--border-gold); color:var(--gold); background:var(--gold-muted); }
+    .container {
+      width: min(1120px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
 
-  /* Sub-rounds inside timeline */
-  .round-list { margin-top:20px; display:flex; flex-direction:column; gap:12px; }
-  .round-item { display:flex; gap:14px; padding:14px 18px; background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:6px; transition:all 0.3s; }
-  .round-item:hover { background:rgba(255,255,255,0.04); border-color:var(--border-gold); }
-  .round-badge { flex-shrink:0; width:32px; height:32px; border-radius:50%; background:var(--gold-muted); border:1px solid var(--border-gold); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; color:var(--gold); letter-spacing:0.5px; }
-  .round-info h5 { font-size:0.88rem; font-weight:600; color:var(--white); margin-bottom:3px; }
-  .round-info p { font-size:0.82rem; color:var(--text-muted); font-weight:300; line-height:1.5; }
+    .section {
+      padding: 6rem 0;
+      position: relative;
+    }
 
-  /* Moderator card */
-  .moderator-section { max-width:800px; margin:64px auto 0; }
-  .moderator-card { display:flex; gap:32px; padding:36px; background:rgba(201,168,76,0.04); border:1px solid var(--border-gold); border-radius:12px; align-items:center; }
-  .moderator-avatar { flex-shrink:0; width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg,var(--navy-light),var(--navy-surface)); border:2px solid var(--border-gold); display:flex; align-items:center; justify-content:center; }
-  .moderator-avatar .initials { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600; color:var(--gold); }
-  .moderator-info .mod-label { font-size:0.68rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
-  .moderator-info .mod-name { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--white); margin-bottom:8px; }
-  .moderator-info .mod-bio { font-size:0.88rem; color:var(--text-secondary); font-weight:300; line-height:1.7; }
-  .moderator-info .mod-bio strong { color:var(--text-primary); font-weight:500; }
+    .section-title {
+      margin: 0 0 0.8rem;
+      font-family: "Inter", "Pretendard", sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
 
-  /* SPEAKERS */
-  .speaker-lineup { background:radial-gradient(ellipse 40% 40% at 10% 50%,rgba(201,168,76,0.05) 0%,transparent 70%),var(--navy-mid); }
-  .speaker-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:32px; max-width:1100px; margin:0 auto 80px; }
-  .speaker-card { text-align:center; padding:40px 28px 36px; background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:12px; transition:all 0.4s; position:relative; overflow:hidden; }
-  .speaker-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0; transition:opacity 0.4s; }
-  .speaker-card:hover { background:rgba(255,255,255,0.04); border-color:var(--border-gold); transform:translateY(-4px); }
-  .speaker-card:hover::before { opacity:1; }
-  .speaker-avatar { width:100px; height:100px; border-radius:50%; margin:0 auto 20px; background:linear-gradient(135deg,var(--navy-light),var(--navy-surface)); border:2px solid var(--border-gold); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-  .speaker-avatar .initials { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:var(--gold); }
-  .speaker-confirmed-badge { position:absolute; bottom:-2px; right:-2px; width:28px; height:28px; border-radius:50%; background:#1a7a3a; border:3px solid var(--navy-mid); display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:white; }
-  .speaker-card .name { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--white); margin-bottom:6px; }
-  .speaker-card .domain { font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
-  .speaker-card .role { font-size:0.88rem; color:var(--text-secondary); font-weight:300; line-height:1.5; }
-  .speaker-card.placeholder { border-style:dashed; border-color:var(--border-gold); background:rgba(201,168,76,0.03); cursor:pointer; animation:glowPulse 3s ease-in-out infinite; }
-  .speaker-card.placeholder:hover { background:rgba(201,168,76,0.07); border-color:var(--gold); }
-  .speaker-card.placeholder .speaker-avatar { background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.15)); border:2px dashed var(--border-gold); }
-  .speaker-card.placeholder .name { color:var(--gold); opacity:0.7; font-style:italic; }
-  .speaker-card.placeholder .role { color:var(--text-muted); font-style:italic; }
-  .speaker-card.placeholder.full-span { grid-column:1/-1; max-width:480px; justify-self:center; }
-  .placeholder-cta { margin-top:16px; display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); padding:8px 20px; border:1px solid var(--border-gold); border-radius:100px; background:var(--gold-muted); transition:all 0.3s; text-decoration:none; }
-  .placeholder-cta:hover { background:rgba(201,168,76,0.2); border-color:var(--gold); }
-  @keyframes glowPulse { 0%,100%{box-shadow:0 0 0 rgba(201,168,76,0)} 50%{box-shadow:0 0 30px rgba(201,168,76,0.12)} }
+    .section-sub {
+      color: var(--text-secondary);
+      margin: 0 0 2rem;
+      max-width: 760px;
+    }
 
-  .speakers-layout { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:stretch; }
-  .speakers-message { padding:48px; background:rgba(201,168,76,0.04); border:1px solid var(--border-gold); border-radius:8px; position:relative; display:flex; align-items:center; justify-content:center; }
-  .speakers-message::before { content:'\201C'; font-family:'Cormorant Garamond',serif; font-size:6rem; color:var(--gold); opacity:0.2; position:absolute; top:10px; left:24px; line-height:1; }
-  .speakers-message p { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-style:italic; color:var(--text-primary); line-height:1.9; position:relative; z-index:1; text-align:center; }
-  .speakers-benefits { display:flex; flex-direction:column; gap:24px; }
-  .benefit-item { display:flex; gap:20px; padding:28px; background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:8px; transition:all 0.3s; }
-  .benefit-item:hover { background:rgba(255,255,255,0.04); border-color:var(--border-gold); }
-  .benefit-icon { flex-shrink:0; width:40px; height:40px; border-radius:10px; background:var(--gold-muted); display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
-  .benefit-text h4 { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:var(--white); margin-bottom:6px; }
-  .benefit-text p { font-size:0.88rem; color:var(--text-secondary); font-weight:300; line-height:1.6; }
+    .shape {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-  /* SPONSORS */
-  .sponsors { background:var(--navy); }
-  .sponsors-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:32px; }
-  .sponsor-card { padding:40px; background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:8px; transition:all 0.4s; position:relative; overflow:hidden; }
-  .sponsor-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--gold),transparent); opacity:0; transition:opacity 0.4s; }
-  .sponsor-card:hover { background:rgba(255,255,255,0.04); border-color:var(--border-gold); transform:translateY(-2px); }
-  .sponsor-card:hover::after { opacity:1; }
-  .sponsor-card .card-number { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--gold); opacity:0.3; line-height:1; margin-bottom:16px; }
-  .sponsor-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--white); margin-bottom:12px; }
-  .sponsor-card p { font-size:0.9rem; color:var(--text-secondary); font-weight:300; line-height:1.7; }
-  .sponsors-reach { max-width:1100px; margin:64px auto 0; padding:48px; background:linear-gradient(135deg,rgba(201,168,76,0.06),rgba(201,168,76,0.02)); border:1px solid var(--border-gold); border-radius:8px; text-align:center; }
-  .reach-stats { display:flex; justify-content:center; gap:80px; margin-top:32px; flex-wrap:wrap; }
-  .reach-stat { text-align:center; }
-  .reach-stat .number { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--gold); line-height:1; }
-  .reach-stat .label { font-size:0.78rem; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--text-secondary); margin-top:8px; }
+    .shape-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accent-yellow);
+      opacity: 0.9;
+    }
 
-  /* GALLERY */
-  .photo-gallery { max-width:1100px; margin:0 auto 48px; }
-  .photo-gallery .gallery-label { font-size:0.68rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:16px; text-align:center; }
-  .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
-  .gallery-grid img { width:100%; height:180px; object-fit:cover; border-radius:8px; border:1px solid var(--border-light); transition:all 0.4s; opacity:0; cursor:pointer; }
-  .gallery-grid img.loaded { opacity:1; }
-  .gallery-grid img:hover { border-color:var(--border-gold); transform:scale(1.02); }
-  .gallery-empty { display:none; }
+    .shape-square {
+      width: 52px;
+      height: 52px;
+      background: var(--accent-green);
+      transform: rotate(15deg);
+    }
 
-  /* LIGHTBOX */
-  .lightbox { display:none; position:fixed; inset:0; z-index:10000; background:rgba(5,10,20,0.92); backdrop-filter:blur(8px); align-items:center; justify-content:center; cursor:pointer; }
-  .lightbox.active { display:flex; animation:fadeIn 0.25s ease; }
-  .lightbox img { max-width:80vw; max-height:85vh; object-fit:contain; border-radius:8px; box-shadow:0 8px 60px rgba(0,0,0,0.6); cursor:default; animation:fadeInUp 0.3s ease; }
-  .lightbox-close { position:absolute; top:24px; right:32px; width:40px; height:40px; border:none; background:rgba(255,255,255,0.1); border-radius:50%; color:var(--text-primary); font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.3s; }
-  .lightbox-close:hover { background:rgba(255,255,255,0.2); }
-  .lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); width:48px; height:48px; border:none; background:rgba(255,255,255,0.08); border-radius:50%; color:var(--text-primary); font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s; }
-  .lightbox-nav:hover { background:rgba(255,255,255,0.18); }
-  .lightbox-nav.prev { left:24px; }
-  .lightbox-nav.next { right:24px; }
-  .lightbox-counter { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); font-size:0.78rem; color:var(--text-muted); letter-spacing:2px; }
+    .shape-star {
+      width: 42px;
+      height: 42px;
+      background: var(--accent-pink);
+      clip-path: polygon(50% 0%, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
+    }
 
-  /* KGSA */
-  .kgsa { background:radial-gradient(ellipse 50% 50% at 50% 80%,rgba(201,168,76,0.04) 0%,transparent 70%),var(--navy-mid); }
-  .kgsa-content { max-width:900px; margin:0 auto; text-align:center; }
-  .kgsa-content > p { font-size:1.05rem; color:var(--text-secondary); font-weight:300; line-height:1.8; margin-bottom:56px; }
-  .events-table { width:100%; border-collapse:collapse; margin-bottom:48px; }
-  .events-table thead th { font-size:0.72rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--gold); text-align:left; padding:16px 20px; border-bottom:1px solid var(--border-gold); }
-  .events-table tbody td { font-size:0.92rem; color:var(--text-primary); padding:18px 20px; border-bottom:1px solid var(--border-light); font-weight:300; text-align:left; }
-  .events-table tbody tr:hover td { background:rgba(255,255,255,0.02); }
-  .events-table .attendees { color:var(--gold); font-weight:500; }
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    }
 
-  /* CONTACT */
-  .contact { background:var(--navy); text-align:center; }
-  .contact-card { max-width:600px; margin:0 auto; padding:56px; background:rgba(255,255,255,0.02); border:1px solid var(--border-light); border-radius:12px; position:relative; }
-  .contact-card::before { content:''; position:absolute; top:-1px; left:20%; right:20%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
-  .contact-name { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500; color:var(--white); margin-bottom:4px; }
-  .contact-role { font-size:0.85rem; color:var(--gold); font-weight:500; letter-spacing:1px; margin-bottom:32px; }
-  .contact-links { display:flex; flex-direction:column; gap:16px; align-items:center; }
-  .contact-link { display:inline-flex; align-items:center; gap:12px; color:var(--text-secondary); text-decoration:none; font-size:0.92rem; font-weight:400; transition:color 0.3s; }
-  .contact-link:hover { color:var(--gold); }
-  .contact-link .icon { width:36px; height:36px; border-radius:8px; background:var(--gold-muted); display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; }
+    .site-header.scrolled {
+      background: rgba(250, 250, 250, 0.88);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(10, 10, 10, 0.08);
+    }
 
-  /* FOOTER */
-  footer { padding:40px 48px; border-top:1px solid var(--border-light); display:flex; justify-content:space-between; align-items:center; background:var(--navy); }
-  footer p { font-size:0.78rem; color:var(--text-muted); }
-  footer .footer-brand { font-family:'Cormorant Garamond',serif; font-size:0.95rem; color:var(--gold); font-weight:500; letter-spacing:1px; }
+    .nav-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1rem;
+      min-height: 74px;
+    }
 
-  /* ANIMATIONS */
-  @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-  .fade-in { opacity:0; transform:translateY(30px); transition:all 0.7s cubic-bezier(0.16,1,0.3,1); }
-  .fade-in.visible { opacity:1; transform:translateY(0); }
+    .logo {
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
 
-  /* RESPONSIVE */
-  @media(max-width:1024px) {
-    .speakers-layout{grid-template-columns:1fr;gap:40px} .about-grid{grid-template-columns:repeat(2,1fr)} .speaker-cards{grid-template-columns:repeat(2,1fr)}
-    .moderator-card{flex-direction:column;text-align:center}
-    .about-grid>:last-child:nth-child(odd){grid-column:1/-1;max-width:calc(50% - 16px);justify-self:center}
-    .speaker-cards>:last-child:nth-child(odd){grid-column:1/-1;max-width:calc(50% - 16px);justify-self:center}
-  }
-  @media(max-width:768px) {
-    nav{padding:0 24px} .nav-center{display:none} .nav-mobile-toggle{display:block}
-    nav.menu-open .nav-center{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(10,22,40,0.98);padding:24px;gap:20px;border-bottom:1px solid var(--border-light)}
-    section{padding:80px 24px} .hero{padding:100px 24px 80px} .about-grid{grid-template-columns:1fr} .sponsors-grid{grid-template-columns:1fr} .speaker-cards{grid-template-columns:1fr}
-    .about-grid>:last-child:nth-child(odd){max-width:none;grid-column:auto}
-    .speaker-cards>:last-child:nth-child(odd){max-width:none;grid-column:auto}
-    .reach-stats{gap:40px} .hero-cta-group{flex-direction:column;align-items:center} footer{flex-direction:column;gap:12px;text-align:center}
-    .events-table thead th,.events-table tbody td{padding:12px 10px} .gallery-grid{grid-template-columns:repeat(2,1fr)}
-  }
-  @media(max-width:480px) {
-    .hero h1{font-size:2.4rem} .hero-date{font-size:1rem} .section-title{font-size:1.8rem} .reach-stats{gap:24px} .reach-stat .number{font-size:2.2rem} .gallery-grid{grid-template-columns:repeat(2,1fr)}
-  }
-</style>
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      font-weight: 500;
+      color: #202020;
+    }
+
+    .nav-links a { padding: 0.35rem 0.2rem; }
+    .nav-links a:focus-visible,
+    .button:focus-visible,
+    .menu-toggle:focus-visible {
+      outline: 2px solid var(--primary-blue);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .nav-cta {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .button {
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .button-primary {
+      background: var(--primary-blue);
+      color: #fff;
+    }
+
+    .button-primary:hover {
+      background: #0039cc;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 71, 255, 0.24);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.48rem 0.6rem;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .hero {
+      padding-top: 9.5rem;
+      padding-bottom: 5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.25rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Inter", "Pretendard", sans-serif;
+      font-size: clamp(2.2rem, 6vw, 4.3rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-meta {
+      margin: 1.1rem 0;
+      font-weight: 500;
+    }
+
+    .hero-description {
+      margin: 0 0 1.8rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+      font-size: 1.05rem;
+    }
+
+    .poster-frame {
+      background: #fff;
+      border-radius: 24px;
+      border: 1px solid #e3e3e3;
+      padding: 0.6rem;
+      box-shadow: 0 24px 60px rgba(10, 10, 10, 0.13);
+      transform: rotate(1deg);
+    }
+
+    .poster-frame img {
+      border-radius: 18px;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
+
+    .about-cards,
+    .speaker-grid,
+    .ticket-grid,
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      position: relative;
+      border: 1px solid #e8e8e8;
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      background: var(--card-bg);
+      box-shadow: 0 6px 20px rgba(17, 17, 17, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(17, 17, 17, 0.1);
+    }
+
+    .card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.17rem;
+    }
+
+    .speaker-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .speaker-card { padding-top: 1.6rem; }
+
+    .speaker-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 7px;
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      background: var(--color, var(--primary-blue));
+    }
+
+    .avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+      background: var(--color, var(--primary-blue));
+      color: #111;
+    }
+
+    .speaker-name { margin: 0; font-size: 1.03rem; }
+    .speaker-role,
+    .speaker-org { margin: 0.15rem 0; color: var(--text-secondary); font-size: 0.92rem; }
+
+    .tag {
+      display: inline-block;
+      margin-top: 0.45rem;
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: #f2f2f2;
+    }
+
+    .moderator {
+      margin-top: 1.1rem;
+      padding: 1rem 1.2rem;
+      border-left: 4px solid var(--primary-blue);
+      background: #fff;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 1.5rem;
+      padding-left: 1.3rem;
+      border-left: 2px solid #cfcfcf;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 14px;
+      padding: 1rem 1rem 1rem 1.15rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--primary-blue);
+      left: -1.66rem;
+      top: 1.35rem;
+      box-shadow: 0 0 0 5px #f3f6ff;
+    }
+
+    .timeline-time { font-family: "Inter", sans-serif; font-weight: 700; margin: 0; color: var(--primary-blue); }
+    .timeline-title { margin: 0.22rem 0 0.25rem; font-size: 1.08rem; }
+    .timeline-desc { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+
+    .register-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .ticket-card {
+      text-align: center;
+      border-top: 6px solid var(--primary-blue);
+    }
+
+    .ticket-card:nth-child(2) { border-top-color: var(--accent-red); }
+
+    .ticket-price {
+      margin: 0.5rem 0 0.2rem;
+      font-family: "Inter", sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .steps {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .step {
+      border: 1px solid #ececec;
+      border-radius: 14px;
+      background: #fff;
+      padding: 1rem;
+    }
+
+    .step-title {
+      margin: 0 0 0.45rem;
+      font-weight: 700;
+      color: #202020;
+    }
+
+    .step p { margin: 0.2rem 0; }
+
+    .gallery-grid {
+      margin-top: 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .gallery-item {
+      cursor: zoom-in;
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      min-height: 190px;
+    }
+
+    .gallery-item img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: #fff;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.9rem;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.72));
+    }
+
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.86);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 1rem;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: min(96vw, 1600px);
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+      background: #111;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 1.6rem;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #ececec;
+    }
+
+    th, td {
+      padding: 0.85rem 0.75rem;
+      border-bottom: 1px solid #efefef;
+      text-align: center;
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+
+    th { background: #f7f7f7; font-weight: 700; }
+
+    .sponsor-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .sponsor-card {
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 14px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .sponsor-card img {
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 0.7rem;
+      background: #f8f8f8;
+      border-radius: 10px;
+    }
+
+    .venue-box {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1rem;
+    }
+
+    .venue-meta {
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 14px;
+      padding: 1rem;
+    }
+
+    .map-frame {
+      border: 0;
+      width: 100%;
+      min-height: 320px;
+      border-radius: 14px;
+      box-shadow: 0 14px 35px rgba(10, 10, 10, 0.08);
+    }
+
+    footer {
+      background: var(--dark-section);
+      color: #d8d8d8;
+      padding: 2rem 0;
+      font-size: 0.95rem;
+    }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition-delay: var(--delay, 0ms);
+    }
+
+    [data-animate].in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1100px) {
+      .speaker-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .hero-grid { grid-template-columns: 1fr; }
+      .poster-frame { max-width: 460px; }
+    }
+
+    @media (max-width: 767px) {
+      .container { width: min(1120px, calc(100% - 1.2rem)); }
+      .section { padding: 4.5rem 0; }
+      .nav-wrap { grid-template-columns: 1fr auto auto; }
+      .menu-toggle { display: inline-flex; }
+      .nav-cta .button-primary { display: none; }
+
+      .nav-links {
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+        background: rgba(250, 250, 250, 0.98);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 14px 30px rgba(10, 10, 10, 0.07);
+        border-top: 1px solid #ececec;
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.28s ease;
+      }
+
+      .nav-links a {
+        padding: 0.95rem 1rem;
+        border-bottom: 1px solid #efefef;
+      }
+
+      .nav-links.open { max-height: 360px; }
+
+      .about-cards,
+      .speaker-grid,
+      .ticket-grid,
+      .register-wrap,
+      .gallery-grid,
+      .sponsor-grid,
+      .venue-box { grid-template-columns: 1fr; }
+
+      .hero { padding-top: 8.2rem; }
+    }
+  </style>
 </head>
 <body>
-
-<nav id="navbar">
-  <div class="nav-logo">CU KGSA</div>
-  <ul class="nav-center">
-    <li><a href="#about">About</a></li>
-    <li><a href="#program">Program</a></li>
-    <li><a href="#speaker-lineup">Speakers</a></li>
-    <li><a href="#sponsors">Sponsors</a></li>
-    <li><a href="#kgsa">CU KGSA</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="lang-toggle"><a href="#" class="active">EN</a><a href="/kr/">KR</a></div>
-    <button class="nav-mobile-toggle" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-
-<section class="hero" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-lines"></div>
-  <div class="hero-content">
-    <div class="hero-badge"><span class="dot"></span> Columbia University</div>
-    <h1>CU KGSA<br><span class="accent">Career Event</span></h1>
-    <div class="hero-date">March 28, 2026 &nbsp;&middot;&nbsp; 6:00 PM &ndash; 9:00 PM</div>
-    <p class="hero-desc">An evening of candid panel discussions, meaningful connections, and career insights &mdash; where distinguished professionals meet Columbia's Korean graduate community.</p>
-    <p class="hero-venue"><strong>Ballroom at 50 Haven Ave</strong> &nbsp;&middot;&nbsp; Columbia University Irving Medical Center, New York</p>
-    <div class="hero-cta-group">
-      <a href="#speaker-lineup" class="btn btn-primary">Become a Speaker</a>
-      <a href="#sponsors" class="btn btn-outline">Sponsor This Event</a>
-    </div>
-  </div>
-  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
-</section>
-
-<section class="about" id="about">
-  <div class="section-divider"></div>
-  <div class="section-label">About the Event</div>
-  <h2 class="section-title">An Intimate Evening of<br>Insight &amp; Connection</h2>
-  <p class="section-subtitle">We bring together approximately 70 Korean graduate students at Columbia with distinguished professionals across industries &mdash; for an evening of panel discussions, genuine dialogue, and warm networking.</p>
-  <div class="about-grid">
-    <div class="about-card fade-in">
-      <div class="about-icon">&#127908;</div>
-      <h3>Moderated Panel Discussion</h3>
-      <p>A professionally moderated panel featuring multi-round discussions &mdash; from shared reflections to deep-dive topics to live audience Q&amp;A.</p>
-    </div>
-    <div class="about-card fade-in">
-      <div class="about-icon">&#129309;</div>
-      <h3>Meaningful Networking</h3>
-      <p>An extended dinner and networking session where students and speakers connect authentically over food and drinks in a warm atmosphere.</p>
-    </div>
-    <div class="about-card fade-in">
-      <div class="about-icon">&#10024;</div>
-      <h3>Professional Venue</h3>
-      <p>Hosted at the prestigious Ballroom at Columbia University Irving Medical Center &mdash; a space befitting the caliber of our speakers and attendees.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROGRAM -->
-<section class="program" id="program">
-  <div class="section-divider"></div>
-  <div class="section-label">Program</div>
-  <h2 class="section-title">Evening Schedule</h2>
-  <p class="section-subtitle">A carefully curated flow &mdash; from structured panel discussion to organic connection.</p>
-  <div class="timeline">
-    <!-- Part 1 -->
-    <div class="timeline-item fade-in">
-      <div class="timeline-time">6:00 PM &ndash; 7:30 PM</div>
-      <div class="timeline-title">Part 1 &mdash; Panel Discussion</div>
-      <div class="timeline-desc">&ldquo;Stories of Those Who Study the World&rdquo; &mdash; A moderated panel where speakers share not just how they built their careers, but the choices, challenges, and lessons that shaped who they are.</div>
-      <div class="timeline-tags">
-        <span class="timeline-tag">Moderated Panel</span>
-        <span class="timeline-tag">Multi-Round</span>
-        <span class="timeline-tag">Live Q&amp;A</span>
+  <header class="site-header" id="site-header">
+    <nav class="container nav-wrap" aria-label="주요 메뉴">
+      <a class="logo" href="#top">CU KGSA</a>
+      <div class="nav-links" id="nav-links">
+        <a href="#about">행사 소개</a>
+        <a href="#speakers">연사</a>
+        <a href="#program">프로그램</a>
+        <a href="#register">참가 신청</a>
+        <a href="#kgsa">CU KGSA</a>
       </div>
-      <div class="round-list">
-        <div class="round-item">
-          <div class="round-badge">&#9654;</div>
-          <div class="round-info">
-            <h5>Opening (10 min)</h5>
-            <p>MC introduces CU KGSA, sponsors, and the moderator. Each speaker is introduced to the audience.</p>
+      <div class="nav-cta">
+        <a class="button button-primary" href="#register">참가 신청</a>
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="메뉴 열기">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="section hero">
+      <span class="shape shape-circle" style="top: 100px; right: 16%;"></span>
+      <span class="shape shape-square" style="top: 240px; left: 8%;"></span>
+      <span class="shape shape-star" style="bottom: 100px; right: 6%;"></span>
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow" data-animate>2026 CU KGSA Career Event</span>
+          <h1 data-animate>세상을 공부하다</h1>
+          <p class="hero-meta" data-animate>2026. 3. 28 (토) 오후 6시 ~ 9시<br />Columbia University Irving Medical Center</p>
+          <p class="hero-description" data-animate>뉴욕에서 각자의 길을 개척해온 다섯 분의 이야기를 듣고, 함께 대화하는 저녁.</p>
+          <a class="button button-primary" href="#register" data-animate>참가 신청하기</a>
+        </div>
+        <div class="poster-frame" data-animate>
+          <img src="images/poster.png" alt="2026 CU KGSA Career Event 포스터" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title" data-animate>About</h2>
+        <div class="about-cards">
+          <article class="card" data-animate>
+            <h3>Panel Talk</h3>
+            <p>다섯 분의 연사와 함께하는 패널 토크. 공통 질문 및 사전 질문을 바탕으로 세션을 진행하며, 커리어 및 인생에 대해 진솔하게 대화를 나눕니다.</p>
+          </article>
+          <article class="card" data-animate>
+            <h3>네트워킹 디너</h3>
+            <p>패널 토크 이후 연사분들과 참가자들이 함께 식사하며 자유롭게 대화하는 시간. 간단한 부페 형태의 한식 케이터링이 제공되며, 자유로운 분위기에서 이어집니다.</p>
+          </article>
+          <article class="card" data-animate>
+            <h3>2차 Bar Social</h3>
+            <p>행사 후 사전 신청자를 대상으로 연사분들과 함께 인근 바로 이동합니다. 1인당 $11 상당의 무료 Drink Ticket 1장이 제공됩니다. (추가 비용 각자 부담)</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="speakers">
+      <div class="container">
+        <h2 class="section-title" data-animate>Speakers</h2>
+        <p class="section-sub" data-animate>창업, AI, 금융, 법, 국제기구 — 각기 다른 분야에서 자신만의 길을 만들어온 분들입니다.</p>
+        <div class="speaker-grid">
+          <article class="card speaker-card" style="--color: var(--primary-blue);" data-animate>
+            <div class="avatar">KW</div>
+            <h3 class="speaker-name">Kay Woo (우경식)</h3>
+            <p class="speaker-role">CEO</p>
+            <p class="speaker-org">TADA</p>
+            <span class="tag">Entrepreneur</span>
+          </article>
+          <article class="card speaker-card" style="--color: var(--accent-green);" data-animate>
+            <div class="avatar">JA</div>
+            <h3 class="speaker-name">Joon Ahn (안준욱)</h3>
+            <p class="speaker-role">Founder &amp; CEO</p>
+            <p class="speaker-org">Lawfully</p>
+            <span class="tag">Legal Tech</span>
+          </article>
+          <article class="card speaker-card" style="--color: var(--accent-yellow);" data-animate>
+            <div class="avatar">HK</div>
+            <h3 class="speaker-name">Hyungwon Kim (김형원)</h3>
+            <p class="speaker-role">Software Engineer</p>
+            <p class="speaker-org">Google DeepMind</p>
+            <span class="tag">AI / Tech</span>
+          </article>
+          <article class="card speaker-card" style="--color: var(--accent-red);" data-animate>
+            <div class="avatar" style="color:#fff;">JP</div>
+            <h3 class="speaker-name">Jisu Park (박지수)</h3>
+            <p class="speaker-role">Director</p>
+            <p class="speaker-org">Merrill Lynch</p>
+            <span class="tag">Finance</span>
+          </article>
+          <article class="card speaker-card" style="--color: var(--accent-pink);" data-animate>
+            <div class="avatar" style="color:#fff;">PK</div>
+            <h3 class="speaker-name">Paulo Ko (고재섭)</h3>
+            <p class="speaker-role">Associate Expert</p>
+            <p class="speaker-org">UN HQ (DPPA)</p>
+            <span class="tag">International Affairs</span>
+          </article>
+        </div>
+        <div class="moderator" data-animate>
+          <strong>모더레이터: 우태영</strong><br />
+          「세상을 공부하다」 「The 20s Manual」 저자. xAI 출신 스타트업 창업자이자 글로벌 베스트셀러 번역가. 주한 미국•독일•프랑스•이탈리아•태국 등 각국 대사들과 문화 외교 활동 진행, 10년의 국내외 강연 프로그램 기획 경력 보유. NYU 학사 졸업 후 국제안보 석사과정 진행 중.
+          <br /><br />
+          Bestselling author of “Studying the World” and “The 20s Manual”. Previously at xAI, former startup founder and translator of multiple global bestsellers. Led cultural diplomacy efforts with ambassadors from the U.S., Germany, France, Italy, Thailand, and more, with over 10 years of experience producing speaking programs. B.A. from NYU, currently pursuing an M.S. in Global Security.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="program">
+      <div class="container">
+        <h2 class="section-title" data-animate>Program</h2>
+        <div class="timeline">
+          <article class="timeline-item" data-animate>
+            <p class="timeline-time">6:00 PM</p>
+            <h3 class="timeline-title">오프닝</h3>
+            <p class="timeline-desc">행사 소개, 스폰서 소개, 연사 소개</p>
+          </article>
+          <article class="timeline-item" data-animate>
+            <p class="timeline-time">6:15 PM</p>
+            <h3 class="timeline-title">패널 토크 &amp; Q&amp;A</h3>
+            <p class="timeline-desc">공통 질문 + 사전 질문 기반 패널 세션 (모더레이터: 우태영)</p>
+          </article>
+          <article class="timeline-item" data-animate>
+            <p class="timeline-time">7:30 PM</p>
+            <h3 class="timeline-title">휴식</h3>
+            <p class="timeline-desc"></p>
+          </article>
+          <article class="timeline-item" data-animate>
+            <p class="timeline-time">7:40 PM</p>
+            <h3 class="timeline-title">네트워킹 디너</h3>
+            <p class="timeline-desc">한식 케이터링 / 식사 및 자유로운 대화</p>
+          </article>
+          <article class="timeline-item" data-animate>
+            <p class="timeline-time">9:00 PM~</p>
+            <h3 class="timeline-title">2차 Bar Social</h3>
+            <p class="timeline-desc">Fort Washington Public House (행사장 인근) / 1인 무료 Drink Ticket 1장 제공</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="register">
+      <div class="container">
+        <h2 class="section-title" data-animate>Register</h2>
+        <p class="section-sub" data-animate>참가 신청은 Google Form 작성과 참가비 입금이 모두 완료되어야 확정됩니다.</p>
+        <div class="register-wrap">
+          <div>
+            <div class="ticket-grid">
+              <article class="card ticket-card" data-animate>
+                <h3>Early Bird</h3>
+                <p class="ticket-price">$20</p>
+                <p>3/7 (금) ~ 3/15 (토)</p>
+              </article>
+              <article class="card ticket-card" data-animate>
+                <h3>Regular</h3>
+                <p class="ticket-price">$25</p>
+                <p>3/16 (일) ~ 3/25 (수)</p>
+              </article>
+            </div>
+            <p data-animate style="margin-top:0.8rem;">• 사전 인원 확정 및 No-show 방지를 위하여 참가비 환불은 불가한 점 양해 부탁드립니다.</p>
+          </div>
+          <div class="steps">
+            <article class="step" data-animate>
+              <p class="step-title">Step 1: 참가비 입금 (Zelle)</p>
+              <p>받는 분: Hosung Ahn</p>
+              <p>전화번호: 332-373-3398</p>
+            </article>
+            <article class="step" data-animate>
+              <p class="step-title">Step 2: Google Form 작성</p>
+              <a class="button button-primary" href="https://forms.gle/6yEkX7jvj2ezBFxW8" target="_blank" rel="noopener noreferrer" aria-label="Google Form 작성하기 (새 창)">Google Form 작성하기</a>
+            </article>
           </div>
         </div>
-        <div class="round-item">
-          <div class="round-badge">R1</div>
-          <div class="round-info">
-            <h5>Round 1 &mdash; Common Questions (25 min)</h5>
-            <p>Moderator poses shared questions to all speakers &mdash; uncovering pivotal moments and reflections from each career journey.</p>
+      </div>
+    </section>
+
+    <section class="section" id="kgsa">
+      <div class="container">
+        <h2 class="section-title" data-animate>About Us</h2>
+        <p class="section-sub" data-animate><strong>Columbia University<br />Korean Graduate Student Association</strong><br />Our Community</p>
+        <p data-animate>CU KGSA는 컬럼비아대학교 한인 대학원생 커뮤니티를 대표하는 학생 단체입니다. 재학생과 졸업생을 포함하여 900명 이상의 회원으로 구성되어 있으며, 사교 행사, 커리어 개발, 문화 교류 등 다양한 활동을 통해 활발한 커뮤니티를 운영하고 있습니다. 매년 약 200명의 신입 회원을 맞이하며, 컬럼비아 한인 커뮤니티를 아우르는 대규모 행사들을 개최합니다.</p>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
+            <img src="images/kgsa/1.jpg" alt="Harvard x Yale x Columbia Mixer (보스턴)" loading="lazy" />
+            <figcaption class="caption">Harvard x Yale x Columbia Mixer (보스턴)</figcaption>
+          </figure>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
+            <img src="images/kgsa/2.jpg" alt="대학원 신입생 환영회" loading="lazy" />
+            <figcaption class="caption">대학원 신입생 환영회</figcaption>
+          </figure>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
+            <img src="images/kgsa/3.jpg" alt="Multi-school Mixer (5개 대학)" loading="lazy" />
+            <figcaption class="caption">Multi-school Mixer (5개 대학)</figcaption>
+          </figure>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
+            <img src="images/kgsa/4.jpg" alt="네트워킹 디너" loading="lazy" />
+            <figcaption class="caption">네트워킹 디너</figcaption>
+          </figure>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
+            <img src="images/kgsa/5.jpg" alt="Bar social" loading="lazy" />
+            <figcaption class="caption">Bar social</figcaption>
+          </figure>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
+            <img src="images/kgsa/6.jpg" alt="Welcome Speech 무대" loading="lazy" />
+            <figcaption class="caption">Welcome Speech 무대</figcaption>
+          </figure>
+        </div>
+
+        <table data-animate>
+          <thead>
+            <tr>
+              <th>행사</th>
+              <th>일시</th>
+              <th>참석 인원</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>대학원 신입생 환영회</td>
+              <td>2025년 9월</td>
+              <td>~200명</td>
+            </tr>
+            <tr>
+              <td>Harvard × Yale × Columbia Mixer</td>
+              <td>2025년 10월</td>
+              <td>~160명</td>
+            </tr>
+            <tr>
+              <td>Columbia × Princeton × UPenn × JHU × Rutgers Mixer</td>
+              <td>2025년 11월</td>
+              <td>~200명</td>
+            </tr>
+            <tr>
+              <td>Columbia Thanksgiving Party</td>
+              <td>2025년 11월</td>
+              <td>~50명</td>
+            </tr>
+            <tr>
+              <td>KGSA 설날 파티</td>
+              <td>2026년 2월</td>
+              <td>~60명</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="sponsors">
+      <div class="container">
+        <h2 class="section-title" data-animate>Sponsored by</h2>
+        <div class="sponsor-grid">
+          <article class="sponsor-card" data-animate>
+            <img src="images/sponsors/1.jpg" alt="LG Electronics 로고" loading="lazy" />
+            <strong>LG Electronics</strong>
+          </article>
+          <article class="sponsor-card" data-animate>
+            <img src="images/sponsors/2.jpg" alt="Doosan 로고" loading="lazy" />
+            <strong>Doosan</strong>
+          </article>
+          <article class="sponsor-card" data-animate>
+            <img src="images/sponsors/3.jpg" alt="TADA 로고" loading="lazy" />
+            <strong>TADA</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="venue">
+      <div class="container">
+        <h2 class="section-title" data-animate>Venue</h2>
+        <div class="venue-box">
+          <div class="venue-meta" data-animate>
+            <p><strong>CUIMC 1st Floor Lounge</strong></p>
+            <p>50 Haven Ave, New York, NY 10032</p>
+            <p>Columbia University Irving Medical Center</p>
+            <p>지하철 1호선 / A / C — 168th St역 하차, 도보 약 5분</p>
+            <p><strong>2차 장소:</strong> Fort Washington Public House (행사장 인근)</p>
           </div>
-        </div>
-        <div class="round-item">
-          <div class="round-badge">R2</div>
-          <div class="round-info">
-            <h5>Round 2 &mdash; Deep Dive (30 min)</h5>
-            <p>Topic-based discussions on career choices, trade-offs, values, and work-life balance &mdash; with cross-panel dialogue.</p>
-          </div>
-        </div>
-        <div class="round-item">
-          <div class="round-badge">R3</div>
-          <div class="round-info">
-            <h5>Round 3 &mdash; Audience Q&amp;A (20 min)</h5>
-            <p>Pre-submitted and live questions from the audience, curated and directed by the moderator.</p>
-          </div>
-        </div>
-        <div class="round-item">
-          <div class="round-badge">&#9632;</div>
-          <div class="round-info">
-            <h5>Closing (5 min)</h5>
-            <p>Moderator wraps up key themes. MC transitions to Part 2.</p>
-          </div>
+          <iframe
+            class="map-frame"
+            title="CUIMC 1st Floor Lounge 지도"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=50+Haven+Ave,+New+York,+NY+10032&output=embed"
+            data-animate></iframe>
         </div>
       </div>
-    </div>
-    <!-- Part 2 -->
-    <div class="timeline-item fade-in">
-      <div class="timeline-time">7:30 PM &ndash; 9:00 PM</div>
-      <div class="timeline-title">Part 2 &mdash; Networking Dinner</div>
-      <div class="timeline-desc">The heart of the evening. Speakers and students mingle freely over catered dinner and drinks. Continue conversations from Part 1, seek personal advice, and build genuine connections.</div>
-      <div class="timeline-tags">
-        <span class="timeline-tag">Catered Dinner</span>
-        <span class="timeline-tag">Wine &amp; Drinks</span>
-        <span class="timeline-tag">Free-form Networking</span>
-      </div>
-    </div>
-    <!-- After -->
-    <div class="timeline-item fade-in">
-      <div class="timeline-time">9:00 PM &sim;</div>
-      <div class="timeline-title">After-Event Gathering</div>
-      <div class="timeline-desc">For those who wish to continue &mdash; a nearby venue for more casual, intimate conversations. Speakers and interested students are welcome.</div>
-      <div class="timeline-tags">
-        <span class="timeline-tag">Optional</span>
-        <span class="timeline-tag">Casual &amp; Intimate</span>
-      </div>
-    </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="이미지 크게 보기">
+    <button class="lightbox-close" id="lightbox-close" aria-label="닫기">×</button>
+    <img id="lightbox-image" alt="확대 이미지" />
   </div>
 
-  <!-- Moderator -->
-  <div class="moderator-section fade-in">
-    <div class="moderator-card">
-      <div class="moderator-avatar"><span class="initials">TW</span></div>
-      <div class="moderator-info">
-        <div class="mod-label">Moderator</div>
-        <div class="mod-name">Taeyoung Woo</div>
-        <div class="mod-bio">
-          Author of <strong>&ldquo;Studying the World&rdquo;</strong> (career advice book for young professionals, published by Kyobo). NYU graduate, currently pursuing a master&rsquo;s degree at NYU. Former tech industry professional with experience organizing talks with prominent figures including <strong>Suk-hee Son</strong> (JTBC), <strong>PD Taeho Kim</strong>, former <strong>UN Secretary-General Ban Ki-moon</strong>, and <strong>World Bank President Jim Yong Kim</strong>.
-        </div>
-      </div>
+  <footer>
+    <div class="container">
+      <p>© 2026 Columbia University Korean Graduate Student Association<br />문의: dk3500@columbia.edu | cukgsa@gmail.com</p>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- SPEAKERS -->
-<section class="speaker-lineup" id="speaker-lineup">
-  <div class="section-divider"></div>
-  <div class="section-label">Speakers</div>
-  <h2 class="section-title">Distinguished Voices,<br>One Evening</h2>
-  <p class="section-subtitle">Industry leaders and trailblazers joining us to share their journeys with Columbia's next generation of professionals.</p>
+  <script>
+    const header = document.getElementById('site-header');
+    const navLinks = document.getElementById('nav-links');
+    const menuToggle = document.getElementById('menu-toggle');
 
-  <div class="speaker-cards">
-    <div class="speaker-card fade-in">
-      <div class="speaker-avatar"><span class="initials">KW</span><div class="speaker-confirmed-badge">&#10003;</div></div>
-      <div class="domain">Entrepreneur</div>
-      <div class="name">Kay Woo</div>
-      <div class="role">CEO<br>TADA</div>
-    </div>
-    <div class="speaker-card fade-in">
-      <div class="speaker-avatar"><span class="initials">HK</span><div class="speaker-confirmed-badge">&#10003;</div></div>
-      <div class="domain">AI / Research</div>
-      <div class="name">Hyungwon Kim</div>
-      <div class="role">Software Engineer<br>Google DeepMind</div>
-    </div>
-    <div class="speaker-card fade-in">
-      <div class="speaker-avatar"><span class="initials">JP</span><div class="speaker-confirmed-badge">&#10003;</div></div>
-      <div class="domain">Quant Finance</div>
-      <div class="name">Jisu Park</div>
-      <div class="role">Director<br>Merrill Lynch</div>
-    </div>
-    <div class="speaker-card fade-in">
-      <div class="speaker-avatar"><span class="initials">MK</span><div class="speaker-confirmed-badge">&#10003;</div></div>
-      <div class="domain">Medicine</div>
-      <div class="name">Michael Kim</div>
-      <div class="role">Physician</div>
-    </div>
-    <!-- Placeholder -->
-    <div class="speaker-card placeholder full-span fade-in" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      <div class="speaker-avatar">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="9" fill="rgba(201,168,76,0.2)"/><path d="M6 44c0-10 8-16 18-16s18 6 18 16" fill="rgba(201,168,76,0.15)"/></svg>
-      </div>
-      <div class="domain" style="opacity:0.5">To Be Announced</div>
-      <div class="name">We're Waiting for You</div>
-      <div class="role">70 ambitious students are eager to learn from someone exactly like you.</div>
-      <a href="#contact" class="placeholder-cta" onclick="event.stopPropagation()">Learn More &rarr;</a>
-    </div>
-  </div>
+    const onScroll = () => {
+      if (window.scrollY > 8) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    };
 
-  <div class="speakers-layout">
-    <div class="speakers-message fade-in">
-      <p>We envision this not as a formal, structured event &mdash; but as a warm, comfortable gathering where speakers and students connect naturally. Our team puts in the rigorous preparation behind the scenes, so that on the day itself, the experience feels effortless and genuine.</p>
-    </div>
-    <div class="speakers-benefits">
-      <div class="benefit-item fade-in">
-        <div class="benefit-icon">&#127963;</div>
-        <div class="benefit-text"><h4>Prestigious Venue</h4><p>The Ballroom at Columbia University Irving Medical Center &mdash; a refined space hosting Columbia's most distinguished gatherings.</p></div>
-      </div>
-      <div class="benefit-item fade-in">
-        <div class="benefit-icon">&#128248;</div>
-        <div class="benefit-text"><h4>Professional Photo &amp; Video</h4><p>A dedicated team captures the event. High-quality photos and footage provided to all speakers afterward.</p></div>
-      </div>
-      <div class="benefit-item fade-in">
-        <div class="benefit-icon">&#127769;</div>
-        <div class="benefit-text"><h4>Extended Networking</h4><p>Speakers are welcome to join an after-event gathering for more intimate, relaxed conversations.</p></div>
-      </div>
-      <div class="benefit-item fade-in">
-        <div class="benefit-icon">&#128221;</div>
-        <div class="benefit-text"><h4>Curated Q&amp;A Experience</h4><p>Questions are collected in advance. Focus on topics you're most comfortable with &mdash; no surprises.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
 
-<!-- SPONSORS -->
-<section class="sponsors" id="sponsors">
-  <div class="section-divider"></div>
-  <div class="section-label">For Sponsors</div>
-  <h2 class="section-title">Partner With Columbia's<br>Korean Graduate Community</h2>
-  <!-- Sponsor Gallery -->
-  <div class="photo-gallery fade-in" id="gallery-sponsors">
-    <div class="gallery-label">From Our Events</div>
-    <div class="gallery-grid" data-folder="/images/sponsors/" data-count="6"></div>
-  </div>
-  <p class="section-subtitle">Reach an influential community of young Korean professionals building their careers in New York.</p>
-  <div class="sponsors-grid">
-    <div class="sponsor-card fade-in"><div class="card-number">01</div><h3>Social Media Exposure</h3><p>Featured in pre- and post-event content across CU KGSA's official Instagram, with dedicated sponsor spotlights and stories.</p></div>
-    <div class="sponsor-card fade-in"><div class="card-number">02</div><h3>Community Channel Promotion</h3><p>Dedicated introduction to our ~900-member community channel comprising current students and alumni.</p></div>
-    <div class="sponsor-card fade-in"><div class="card-number">03</div><h3>On-Site Brand Presence</h3><p>Verbal and visual acknowledgment during the event &mdash; including presentation slides and direct introductions to 70+ attendees.</p></div>
-    <div class="sponsor-card fade-in"><div class="card-number">04</div><h3>Long-term Partnership</h3><p>Priority access to co-host future CU KGSA events and build an ongoing relationship with our community.</p></div>
-  </div>
-  <div class="sponsors-reach fade-in">
-    <div class="section-label">Our Reach</div>
-    <h3 class="section-title" style="margin-bottom:0">By the Numbers</h3>
-    <div class="reach-stats">
-      <div class="reach-stat"><div class="number">900+</div><div class="label">Community Members</div></div>
-      <div class="reach-stat"><div class="number">200+</div><div class="label">New Members / Year</div></div>
-      <div class="reach-stat"><div class="number">70+</div><div class="label">Event Attendees</div></div>
-      <div class="reach-stat"><div class="number">5+</div><div class="label">Major Events / Year</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- KGSA -->
-<section class="kgsa" id="kgsa">
-  <div class="section-divider"></div>
-  <div class="section-label">About Us</div>
-  <h2 class="section-title">Columbia University<br>Korean Graduate Student Association</h2>
-  <!-- KGSA Gallery -->
-  <div class="photo-gallery fade-in" id="gallery-kgsa">
-    <div class="gallery-label">Our Community</div>
-    <div class="gallery-grid" data-folder="/images/kgsa/" data-count="6"></div>
-  </div>
-  <div class="kgsa-content">
-    <p class="fade-in">CU KGSA is the representative organization for Korean graduate students at Columbia University. With over 900 members including current students and alumni, we foster a vibrant community through social events, professional development, and cultural exchange. Each year, we welcome approximately 200 new members and host a series of flagship events.</p>
-    <table class="events-table fade-in">
-      <thead><tr><th>Event</th><th>Date</th><th>Attendees</th></tr></thead>
-      <tbody>
-        <tr><td>Graduate Welcome Reception</td><td>September 2025</td><td class="attendees">~200</td></tr>
-        <tr><td>Harvard &times; Yale &times; Columbia Mixer</td><td>October 2025</td><td class="attendees">~160</td></tr>
-        <tr><td>Columbia &times; Princeton &times; UPenn &times; JHU &times; Rutgers Mixer</td><td>November 2025</td><td class="attendees">~200</td></tr>
-        <tr><td>Columbia Thanksgiving Party</td><td>November 2025</td><td class="attendees">~50</td></tr>
-        <tr><td>KGSA Lunar New Year Gathering</td><td>February 2026</td><td class="attendees">~60</td></tr>
-        <tr><td style="color:var(--gold);font-weight:500">CU KGSA Career Event</td><td style="color:var(--gold)">March 2026</td><td class="attendees" style="font-weight:700">~70</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="section-divider"></div>
-  <div class="section-label">Contact</div>
-  <h2 class="section-title">Get in Touch</h2>
-  <p class="section-subtitle">Interested in speaking at or sponsoring our event?<br>We'd love to hear from you.</p>
-  <div class="contact-card fade-in">
-    <div class="contact-name">Dongjae Kang</div>
-    <div class="contact-role">Career Chair &middot; CU KGSA</div>
-    <div class="contact-links">
-      <a href="mailto:dk3500@columbia.edu" class="contact-link"><span class="icon">&#9993;</span> dk3500@columbia.edu</a>
-      <a href="mailto:cukgsa@gmail.com" class="contact-link"><span class="icon">&#128231;</span> cukgsa@gmail.com</a>
-      <a href="tel:929-497-4397" class="contact-link"><span class="icon">&#128222;</span> 929-497-4397</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2026 Columbia University Korean Graduate Student Association. All rights reserved.</p>
-  <span class="footer-brand">CU KGSA</span>
-</footer>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-  <button class="lightbox-nav prev" onclick="navLightbox(-1,event)">&#8249;</button>
-  <img id="lightbox-img" src="" alt="">
-  <button class="lightbox-nav next" onclick="navLightbox(1,event)">&#8250;</button>
-  <div class="lightbox-counter" id="lightbox-counter"></div>
-</div>
-
-<script>
-  const navbar=document.getElementById('navbar');
-  window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>40));
-  function toggleMenu(){navbar.classList.toggle('menu-open')}
-  document.querySelectorAll('.nav-center a').forEach(l=>l.addEventListener('click',()=>navbar.classList.remove('menu-open')));
-
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const p=entry.target.parentElement;
-        const s=Array.from(p.children).filter(c=>c.classList.contains('fade-in')||c.classList.contains('timeline-item'));
-        const i=s.indexOf(entry.target);
-        setTimeout(()=>entry.target.classList.add('visible'),i*120);
-        obs.unobserve(entry.target);
-      }
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
     });
-  },{threshold:0.12,rootMargin:'0px 0px -50px 0px'});
-  document.querySelectorAll('.fade-in,.timeline-item').forEach(el=>obs.observe(el));
 
-  // Gallery loader
-  document.querySelectorAll('.gallery-grid').forEach(grid=>{
-    const folder=grid.dataset.folder;
-    const count=parseInt(grid.dataset.count)||6;
-    for(let i=1;i<=count;i++){
-      const img=document.createElement('img');
-      img.src=folder+i+'.jpg';
-      img.alt='CU KGSA event photo';
-      img.loading='lazy';
-      img.onload=function(){this.classList.add('loaded')};
-      img.onerror=function(){this.remove()};
-      img.onclick=function(){openLightbox(this)};
-      grid.appendChild(img);
-    }
-  });
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', '메뉴 열기');
+      });
+    });
 
-  // Lightbox with navigation
-  const lightbox=document.getElementById('lightbox');
-  const lightboxImg=document.getElementById('lightbox-img');
-  const lightboxCounter=document.getElementById('lightbox-counter');
-  let currentGallery=[];
-  let currentIndex=0;
+    const animated = [...document.querySelectorAll('[data-animate]')];
+    animated.forEach((el, i) => {
+      el.style.setProperty('--delay', `${(i % 6) * 70}ms`);
+    });
 
-  function openLightbox(imgEl){
-    const grid=imgEl.parentElement;
-    currentGallery=Array.from(grid.querySelectorAll('img.loaded'));
-    currentIndex=currentGallery.indexOf(imgEl);
-    showCurrentImage();
-    lightbox.classList.add('active');
-    document.body.style.overflow='hidden';
-  }
-  function showCurrentImage(){
-    if(!currentGallery.length)return;
-    lightboxImg.src=currentGallery[currentIndex].src;
-    lightboxCounter.textContent=(currentIndex+1)+' / '+currentGallery.length;
-  }
-  function navLightbox(dir,e){
-    e.stopPropagation();
-    currentIndex=(currentIndex+dir+currentGallery.length)%currentGallery.length;
-    showCurrentImage();
-  }
-  function closeLightbox(e){
-    if(e.target===lightboxImg)return;
-    lightbox.classList.remove('active');
-    document.body.style.overflow='';
-  }
-  document.addEventListener('keydown',e=>{
-    if(!lightbox.classList.contains('active'))return;
-    if(e.key==='Escape')closeLightbox(e);
-    if(e.key==='ArrowLeft')navLightbox(-1,e);
-    if(e.key==='ArrowRight')navLightbox(1,e);
-  });
-</script>
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+
+    animated.forEach((el) => observer.observe(el));
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    const openLightbox = (src, alt) => {
+      lightboxImage.src = src;
+      lightboxImage.alt = alt || '확대 이미지';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lightboxClose.focus();
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.gallery-item').forEach((item) => {
+      const img = item.querySelector('img');
+      if (!img) return;
+      const trigger = () => openLightbox(img.src, img.alt);
+      item.addEventListener('click', trigger);
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          trigger();
+        }
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+
+  </script>
 </body>
 </html>

@@ -404,6 +404,7 @@
     }
 
     .gallery-item {
+      cursor: zoom-in;
       position: relative;
       border-radius: 14px;
       overflow: hidden;
@@ -426,6 +427,45 @@
       background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.72));
     }
 
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.86);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 1rem;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: min(96vw, 1600px);
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+      background: #111;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 1.6rem;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -439,7 +479,7 @@
     th, td {
       padding: 0.85rem 0.75rem;
       border-bottom: 1px solid #efefef;
-      text-align: left;
+      text-align: center;
       vertical-align: top;
       font-size: 0.95rem;
     }
@@ -504,6 +544,12 @@
       transform: translateY(0);
     }
 
+    #program .section-title { color: var(--primary-blue); }
+    #register .section-title { color: var(--accent-red); }
+    #kgsa .section-title { color: var(--accent-green); }
+    #sponsors .section-title { color: var(--accent-pink); }
+    #venue .section-title { color: var(--primary-blue); }
+
     @media (max-width: 1100px) {
       .speaker-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .hero-grid { grid-template-columns: 1fr; }
@@ -511,8 +557,9 @@
     }
 
     @media (max-width: 767px) {
-      .container { width: min(1120px, calc(100% - 1.2rem)); }
+      .container { width: min(1120px, calc(100% - 2rem)); }
       .section { padding: 4.5rem 0; }
+      .card { padding: 1rem; }
       .nav-wrap { grid-template-columns: 1fr auto auto; }
       .menu-toggle { display: inline-flex; }
       .nav-cta .button-primary { display: none; }
@@ -541,14 +588,32 @@
       .nav-links.open { max-height: 360px; }
 
       .about-cards,
-      .speaker-grid,
-      .ticket-grid,
       .register-wrap,
-      .gallery-grid,
-      .sponsor-grid,
       .venue-box { grid-template-columns: 1fr; }
 
+      .speaker-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .speaker-card { padding: 1rem; padding-top: 1.4rem; }
+      .speaker-name { font-size: 0.96rem; }
+
+      .ticket-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+      .ticket-price { font-size: 1.6rem; }
+
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+      .gallery-item { min-height: 110px; }
+
+      .sponsor-grid { grid-template-columns: 1fr; }
+
+      .section-title { font-size: clamp(1.55rem, 7vw, 2rem); }
+      .section-sub, .timeline-desc, .speaker-role, .speaker-org { color: #444; }
+
       .hero { padding-top: 8.2rem; }
+    }
+
+    @media (max-width: 420px) {
+      .container { width: min(1120px, calc(100% - 1.4rem)); }
+      .speaker-grid { grid-template-columns: 1fr; }
+      .gallery-grid { gap: 0.42rem; }
+      .ticket-grid { gap: 0.55rem; }
     }
   </style>
 </head>
@@ -594,16 +659,16 @@
         <h2 class="section-title" data-animate>About</h2>
         <div class="about-cards">
           <article class="card" data-animate>
-            <h3>솔직한 대화</h3>
-            <p>다섯 분의 연사와 함께하는 AMA 형식의 패널 토크. 사전에 모은 질문을 바탕으로, 커리어, 고민, 선택의 순간에 대해 솔직하게 이야기합니다.</p>
+            <h3>Panel Talk</h3>
+            <p>다섯 분의 연사와 함께하는 패널 토크. 공통 질문 및 사전 질문을 바탕으로 세션을 진행하며, 커리어 및 인생에 대해 진솔하게 대화를 나눕니다.</p>
           </article>
           <article class="card" data-animate>
-            <h3>네트워킹 디너</h3>
-            <p>패널 토크 이후 연사분들과 참가자들이 함께 식사하며 자유롭게 대화하는 시간. 한식 부페와 함께 편안한 분위기에서 이어집니다.</p>
+            <h3>Networking Dinner</h3>
+            <p>패널 토크 이후 연사분들과 참가자들이 함께 식사하며 자유롭게 대화하는 시간. 간단한 부페 형태의 한식 케이터링이 제공되며, 자유로운 분위기에서 이어집니다.</p>
           </article>
           <article class="card" data-animate>
-            <h3>2차 Bar Social</h3>
-            <p>행사 후 희망자에 한하여 연사분들과 함께 인근 바로 이동합니다. 무료 Drink Ticket이 제공됩니다.</p>
+            <h3>Bar Social</h3>
+            <p>행사 후 사전 신청자를 대상으로 연사분들과 함께 인근 바로 이동합니다. 1인당 $11 상당의 무료 Drink Ticket 1장이 제공됩니다. (추가 비용 각자 부담)</p>
           </article>
         </div>
       </div>
@@ -644,7 +709,7 @@
           </article>
           <article class="card speaker-card" style="--color: var(--accent-pink);" data-animate>
             <div class="avatar" style="color:#fff;">PK</div>
-            <h3 class="speaker-name">Paulo Ko</h3>
+            <h3 class="speaker-name">Paulo Ko (고재섭)</h3>
             <p class="speaker-role">Associate Expert</p>
             <p class="speaker-org">UN HQ (DPPA)</p>
             <span class="tag">International Affairs</span>
@@ -671,7 +736,7 @@
           <article class="timeline-item" data-animate>
             <p class="timeline-time">6:15 PM</p>
             <h3 class="timeline-title">패널 토크 &amp; Q&amp;A</h3>
-            <p class="timeline-desc">사전 질문 기반 AMA + 현장 질의응답 (모더레이터: 우태영)</p>
+            <p class="timeline-desc">공통 질문 + 사전 질문 기반 패널 세션 (모더레이터: 우태영)</p>
           </article>
           <article class="timeline-item" data-animate>
             <p class="timeline-time">7:30 PM</p>
@@ -681,12 +746,12 @@
           <article class="timeline-item" data-animate>
             <p class="timeline-time">7:40 PM</p>
             <h3 class="timeline-title">네트워킹 디너</h3>
-            <p class="timeline-desc">한식 부페 / 연사분들과 자유로운 대화</p>
+            <p class="timeline-desc">한식 케이터링 / 식사 및 자유로운 대화</p>
           </article>
           <article class="timeline-item" data-animate>
             <p class="timeline-time">9:00 PM~</p>
-            <h3 class="timeline-title">2차 Bar Social (선택)</h3>
-            <p class="timeline-desc">Fort Washington Public House / 무료 Drink Ticket 제공</p>
+            <h3 class="timeline-title">2차 Bar Social</h3>
+            <p class="timeline-desc">Fort Washington Public House (행사장 인근) / 1인 무료 Drink Ticket 1장 제공</p>
           </article>
         </div>
       </div>
@@ -710,7 +775,7 @@
                 <p>3/16 (일) ~ 3/25 (수)</p>
               </article>
             </div>
-            <p data-animate style="margin-top:0.8rem;">환불 정책: 참가비 환불은 불가합니다.</p>
+            <p data-animate style="margin-top:0.8rem;">• 사전 인원 확정 및 No-show 방지를 위하여 참가비 환불은 불가한 점 양해 부탁드립니다.</p>
           </div>
           <div class="steps">
             <article class="step" data-animate>
@@ -734,27 +799,27 @@
         <p data-animate>CU KGSA는 컬럼비아대학교 한인 대학원생 커뮤니티를 대표하는 학생 단체입니다. 재학생과 졸업생을 포함하여 900명 이상의 회원으로 구성되어 있으며, 사교 행사, 커리어 개발, 문화 교류 등 다양한 활동을 통해 활발한 커뮤니티를 운영하고 있습니다. 매년 약 200명의 신입 회원을 맞이하며, 컬럼비아 한인 커뮤니티를 아우르는 대규모 행사들을 개최합니다.</p>
 
         <div class="gallery-grid">
-          <figure class="gallery-item" data-animate>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
             <img src="images/kgsa/1.jpg" alt="Harvard x Yale x Columbia Mixer (보스턴)" loading="lazy" />
             <figcaption class="caption">Harvard x Yale x Columbia Mixer (보스턴)</figcaption>
           </figure>
-          <figure class="gallery-item" data-animate>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
             <img src="images/kgsa/2.jpg" alt="대학원 신입생 환영회" loading="lazy" />
             <figcaption class="caption">대학원 신입생 환영회</figcaption>
           </figure>
-          <figure class="gallery-item" data-animate>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
             <img src="images/kgsa/3.jpg" alt="Multi-school Mixer (5개 대학)" loading="lazy" />
             <figcaption class="caption">Multi-school Mixer (5개 대학)</figcaption>
           </figure>
-          <figure class="gallery-item" data-animate>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
             <img src="images/kgsa/4.jpg" alt="네트워킹 디너" loading="lazy" />
             <figcaption class="caption">네트워킹 디너</figcaption>
           </figure>
-          <figure class="gallery-item" data-animate>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
             <img src="images/kgsa/5.jpg" alt="Bar social" loading="lazy" />
             <figcaption class="caption">Bar social</figcaption>
           </figure>
-          <figure class="gallery-item" data-animate>
+          <figure class="gallery-item" data-animate tabindex="0" role="button" aria-label="사진 크게 보기">
             <img src="images/kgsa/6.jpg" alt="Welcome Speech 무대" loading="lazy" />
             <figcaption class="caption">Welcome Speech 무대</figcaption>
           </figure>
@@ -775,7 +840,7 @@
               <td>~200명</td>
             </tr>
             <tr>
-              <td>Harvard × Yale × Columbia Mixer (보스턴)</td>
+              <td>Harvard × Yale × Columbia Mixer</td>
               <td>2025년 10월</td>
               <td>~160명</td>
             </tr>
@@ -793,11 +858,6 @@
               <td>KGSA 설날 파티</td>
               <td>2026년 2월</td>
               <td>~60명</td>
-            </tr>
-            <tr>
-              <td>CU KGSA Career Event</td>
-              <td>2026년 3월</td>
-              <td>~70명</td>
             </tr>
           </tbody>
         </table>
@@ -833,6 +893,7 @@
             <p>50 Haven Ave, New York, NY 10032</p>
             <p>Columbia University Irving Medical Center</p>
             <p>지하철 1호선 / A / C — 168th St역 하차, 도보 약 5분</p>
+            <p><strong>2차 장소:</strong> Fort Washington Public House (행사장 인근)</p>
           </div>
           <iframe
             class="map-frame"
@@ -846,6 +907,11 @@
       </div>
     </section>
   </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="이미지 크게 보기">
+    <button class="lightbox-close" id="lightbox-close" aria-label="닫기">×</button>
+    <img id="lightbox-image" alt="확대 이미지" />
+  </div>
 
   <footer>
     <div class="container">
@@ -895,6 +961,48 @@
     }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
 
     animated.forEach((el) => observer.observe(el));
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    const openLightbox = (src, alt) => {
+      lightboxImage.src = src;
+      lightboxImage.alt = alt || '확대 이미지';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lightboxClose.focus();
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.gallery-item').forEach((item) => {
+      const img = item.querySelector('img');
+      if (!img) return;
+      const trigger = () => openLightbox(img.src, img.alt);
+      item.addEventListener('click', trigger);
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          trigger();
+        }
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+
   </script>
 </body>
 </html>
